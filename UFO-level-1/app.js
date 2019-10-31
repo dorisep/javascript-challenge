@@ -12,18 +12,28 @@ data.forEach(datas => {
     row.append("td").text(datas.state);
     row.append("td").text(datas.country);
     row.append("td").text(datas.shape);
-    row.append("td").text(datas.comment);
-    // < th > date / time</th >
-    //     <th>durationMinutes</th>
-    //     <th>city</th>
-    //     <th>state</th>
-    //     <th>country</th>
-    //     <th>shape</th>
-    //     <th>comment</th>
-    // Object.entries(datas).forEach(([key, value]) => {
-    //     var cell = row.append("td");
-    //     cell.text(value);
-    //     console.log(value);
+    row.append("td").text(datas.durationMinutes);
 
-    // })
+
+});
+
+var dateSearchField = d3.select("#dateSearch");
+var dataSearchButton = d3.select("#dateSearchButton");
+console.log(dateSearchField)
+dataSearchButton.on("click", () => {
+    var dateToSearchFor = dateSearchButton.property("value");
+    tableBody.remove();
+    tableBody.append("tbody");
+
+    datas.filter(data => data.displayNameEn == dateToSearchFor).forEach(data => {
+        var row = tableBody.append("tr");
+
+        row.append("td").text(datas.datetime);
+        row.append("td").text(datas.city);
+        row.append("td").text(datas.state);
+        row.append("td").text(datas.country);
+        row.append("td").text(datas.shape);
+        row.append("td").text(datas.durationMinutes);
+
+    })
 })
